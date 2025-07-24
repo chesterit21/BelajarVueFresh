@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BelajarVueFresh</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/primeflex/primeflex.min.css"  asp-append-version="true" >   
+    <link rel="stylesheet" href="~/lib/primeflex/themes/primeone-light.css"  asp-append-version="true" >   
+    <link rel="stylesheet" href="~/primeicons.css/primeicons.css/primeicons-gTeL7eCY.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+       <style>
+        /* CSS kustom untuk memastikan layout bekerja dengan benar */
+        html, body {
+            height: 100%; /* Penting untuk min-h-screen */
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Mencegah scrollbar ganda jika konten terlalu panjang */
+        }
+        #app-layout-wrapper {
+            min-height: 100vh; /* Pastikan wrapper ini mengisi tinggi viewport */
+        }
+    </style>
+</head>
+<body>
+ <div id="app-layout-wrapper" class="flex flex-column">
+        <div id="header-app" class="flex-shrink-0">
+            </div>
+
+        <div class="flex flex-grow-1">
+            <div id="sidebar-app" class="flex-shrink-0 shadow-1">
+                </div>
+
+            <main id="app" class="flex-grow-1 p-4 overflow-auto">
+                @RenderBody()
+            </main>
+
+        <footer class="border-top footer text-muted flex-shrink-0">
+            <div class="container">
+                &copy; 2025 - BelajarVueFresh - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+        </div>
+    </div>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- Inject Vue script sesuai View name -->
+     @await Html.PartialAsync("_InjectVueScript", ViewContext.RouteData.Values["controller"])
+    <script type="module" src="~/pages/Shared/header/header-main.js" defer asp-append-version="true"></script>
+    <script type="module" src="~/pages/Shared/sidebar/sidebar-main.js" defer asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
